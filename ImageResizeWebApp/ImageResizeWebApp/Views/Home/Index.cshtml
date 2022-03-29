@@ -6,6 +6,17 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.1.1/min/dropzone.min.css" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/blueimp-gallery/2.25.2/css/blueimp-gallery.min.css" crossorigin="anonymous">
 
+<script>
+    function myFunction() {
+    var x = document.getElementById("myDIV");
+    if (x.innerHTML === "") {
+        x.innerHTML = "This is a group project for a Cloud Computing Class at the Univeristy of Montana. /nIt uses the Azure Blob Storage Client library to upload images to a storage account. /nThe purpose of this project is to gain more experience working with cloud services /nand terraform.";
+    } else {
+        x.innerHTML = "";
+    }
+    }
+</script>
+
 <style>
     html {
         font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -52,6 +63,12 @@
         <h1><span class="fa fa-user-circle-o"></span> <span id="page-title">ImageResizer</span></h1>
     </div>
     
+    <div class="box about">
+        <hr>
+        <button onclick="myFunction()">App Info</button>
+        <div id="myDIV"></div>
+    </div>
+
     <div class="box content">
 
     <a href="/.auth/logout">Sign out</a>        
