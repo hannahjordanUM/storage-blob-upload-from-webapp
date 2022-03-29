@@ -18,17 +18,9 @@
     #gallery-note {
         font-size: smaller
     }
-		.button {
-			border:none;
-			color:white;
-			padding: 15px 32px;
-			text-align: center;
-			text-decoration: bold;
-			display: inline-block;
-			font-size: 16px;
-			margin: 4px 2px;
-			cursor: pointer;
-			background-color: #008CBA;
+		.button_div {
+			border=1px solid #ff1100;
+			text-align: right;
 		}
 
     .blueimp-gallery {
@@ -60,13 +52,13 @@
 
 
 <main>
+		<div class="button_div"><button onclick="document.location='/.auth/logout'">Logout</button></div>
+		
     <div class="box header">
         <h1><span class="fa fa-user-circle-o"></span> <span id="page-title">ImageResizer</span></h1>
     </div>
     
     <div class="box content">
-
-    <button class="button"><a href="/.auth/logout">Sign out</a></button>        
     
     <hr>
         <h2>Upload photos</h2>
