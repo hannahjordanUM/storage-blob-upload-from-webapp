@@ -6,29 +6,36 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.1.1/min/dropzone.min.css" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/blueimp-gallery/2.25.2/css/blueimp-gallery.min.css" crossorigin="anonymous">
 
+<script>
+    function myFunction() {
+    var x = document.getElementById("myDIV");
+    if (x.innerHTML === "") {
+        x.innerHTML = "This is a group project for a Cloud Computing Class at the Univeristy of Montana. /nIt uses the Azure Blob Storage Client library to upload images to a storage account. /nThe purpose of this project is to gain more experience working with cloud services /nand terraform.";
+    } else {
+        x.innerHTML = "";
+    }
+    }
+</script>
+
 <style>
     html {
         font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     }
-
     main {
         margin: 20px;
     }
-
     #gallery-note {
         font-size: smaller
     }
-		.button_div {
-			border=1px solid #ff1100;
-			text-align: right;
-		}
-
     .blueimp-gallery {
         margin: 25px;
         max-width: 150px;
         padding-bottom: 150px;
     }
-
+    .button_div {
+			border=1px solid #ff1100;
+			text-align: right;
+		}
     .dropzone {
         border: 3px dashed #00a1f1;
         background: #F0F8FF;
@@ -36,11 +43,9 @@
         border-radius: 5px;
         max-width: 400px;
     }
-
     .dropzone .dz-message {
         font-weight: 350;
     }
-
     .dropzone .dz-message .note {
         font-family: sans-serif;
         font-size: 18px;
@@ -52,13 +57,22 @@
 
 
 <main>
-		<div class="button_div"><button onclick="document.location='/.auth/logout'">Logout</button></div>
-		
     <div class="box header">
         <h1><span class="fa fa-user-circle-o"></span> <span id="page-title">ImageResizer</span></h1>
     </div>
     
+    
+    <div class="box about">
+        <hr>
+        <button onclick="myFunction()">App Info</button>
+        <div id="myDIV"></div>
+    </div>
+    
+    <div class="button_div"><button onclick="document.location='/.auth/logout'">Logout</button></div>
+
     <div class="box content">
+
+
     
     <hr>
         <h2>Upload photos</h2>
@@ -108,13 +122,11 @@
 <script>
     // init gallery for later use
     var gallery;
-
     // Grab links for images from backend api
     function fetchImageLinks() {
         // Fetch images
         $.get("api/Images/thumbnails", function(fetchedImageLinks) {
             console.log(fetchedImageLinks)
-
             // Check if anything is in there
             if ( _.isEmpty(fetchedImageLinks) ){
                 console.log('empty fetched')
@@ -140,15 +152,12 @@
                         // do nothing
                     } else {
                         console.log('images arr are not equal')
-
                         // update gallery with new image urls. Only compare actual url without SAS token query string
                         var newImageLinks = _.difference(fetchedImageLinks.map(s => s.split("?")[0]), gallery.list.map(s => s.split("?")[0]))
-
                         console.log('differene is: ')
                         console.log(newImageLinks)
                         // Only add new images
                         gallery.add(newImageLinks);
-
                         // Force image load
                         gallery.next();
                     }
@@ -156,14 +165,12 @@
             }     
         });
     }
-
     // Start first interval
     fetchImageLinks()
     
     setInterval(function() {
         fetchImageLinks()
     }, 5000) 
-
     /* Dropzone */
     // "imageUpload" is the camelized version of the HTML element's ID
     Dropzone.options.imageUpload = {
